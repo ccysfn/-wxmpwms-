@@ -1,6 +1,19 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">微信小程序WMS条码仓库</view>
+  
+  <view class="page__desc">
+    <view class="userinfo">    
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="weui-btn mini-btn" type="primary" size="mini">登录</button>     
+      <block wx:else>
+        <!--    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>-->
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+      <!-- <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>-->
+    </view>
+  </view>
   </view>
 
   <view class="page__bd">
@@ -26,7 +39,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__hd">
-            <view class="weui-label">货   位:</view>
+            <view class="weui-label">货 位:</view>
           </view>
           <view class="weui-cell__bd">
             <input class="weui-input" placeholder="请点击右侧扫描" value="{{hwResult}}" />
@@ -61,10 +74,10 @@
     </view>
   </view>
 
-    <view class="weui-footer weui-footer_fixed-bottom">
-            <view class="weui-footer__links">
-                <navigator url="https://jessecao.club/public/index.php/wxuser/Index/main" class="weui-footer__link" bindtap="copyLink">后台地址</navigator>
-            </view>
-            <view class="weui-footer__text">Copyright © 2019-2020 WXWMS</view>
-        </view>
+  <view class="weui-footer weui-footer_fixed-bottom">
+    <view class="weui-footer__links">
+      <navigator url="https://jessecao.club/public/index.php/wxuser/Index/main" class="weui-footer__link" bindtap="copyLink">后台地址</navigator>
+    </view>
+    <view class="weui-footer__text">Copyright © 2019-2020 WXWMS</view>
+  </view>
 </view>

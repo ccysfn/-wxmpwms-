@@ -1,15 +1,17 @@
 // pages/scan/scan.js
+const app = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     wlresult: '',
     hwResult: '',
     sl: null,
     todoCodeIndex: 0,
     todoCodes: ["操作","入库", "出库"],
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    motto: 'Hello World',
+    userInfo: {},
   },
   copyLink: function(){
     wx.setClipboardData({
@@ -68,7 +70,43 @@ Page({
    */
   onLoad: function(options) {
 
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+   //console.log(this.data.userInfo)
   },
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -120,7 +158,9 @@ Page({
   },
   confirm:function(){
     var index = this.data.todoCodeIndex
-    console.log(index);
+    //console.log(index);
+   // console.log(this.data.userInfo.nickName)
+    if (this.data.userInfo.nickName != null) {
     if(index==1){
       console.log(index);
            this.rk()
@@ -138,14 +178,17 @@ Page({
         }
       });
     }
-    
-
+    } else {
+      wx.showToast({
+        title: '请点击授权登录',
+        icon: 'success',
+        duration: 3000
+      });
+    }
   },
 
   rk: function() {
-   // console.log(this.data.wlresult)
-    //console.log(this.data.hwResult)
-   // console.log(this.data.sl)
+
     if (this.data.wlresult == '' ||
       this.data.hwResult == '' ||
       this.data.sl == null) {
@@ -163,14 +206,14 @@ Page({
           hw: this.data.hwResult,
           wlbh: this.data.wlresult,
           sl: this.data.sl,
-          ywy: 'admin',
+          ywy: this.data.userInfo.nickName,
         },
         header: {
           'content-type': 'application/json' // 默认值
         },
         success(res) {
-          //console.log(res)
-          console.log('success')
+          console.log(res)
+         // console.log('success')
           wx.showToast({
             title: '已完成',
             icon: 'success',
@@ -187,6 +230,7 @@ Page({
         sl: this.data.sl
       })
     }
+    
   },
 
   ck: function() {
@@ -208,7 +252,7 @@ Page({
           hw: this.data.hwResult,
           wlbh: this.data.wlresult,
           sl: this.data.sl,
-          ywy: 'admin',
+          ywy: this.data.userInfo.nickName,
         },
         header: {
           'content-type': 'application/json' // 默认值
