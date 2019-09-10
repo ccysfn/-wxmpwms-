@@ -75,6 +75,7 @@
   </view>
 
   <view class="weui-footer weui-footer_fixed-bottom">
+   <ad unit-id="adunit-1e68a4ccb9e2767a"></ad>
     <view class="weui-footer__links">
       <navigator url="https://jessecao.club/public/index.php/wxuser/Index/main" class="weui-footer__link" bindtap="copyLink">后台地址</navigator>
     </view>
