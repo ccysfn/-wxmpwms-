@@ -1,14 +1,28 @@
 {
   "pages": [
     "pages/scan/scan",
-    "pages/logs/logs"
-    
+    "pages/logs/logs",
+    "pages/barCode/gen"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/scan/scan",
+        "text": "WMS",
+        "iconPath":"static/img/wms.png"
+      },
+      {
+        "pagePath": "pages/barCode/gen",
+        "text": "条码生成",
+        "iconPath": "static/img/barcode.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -69,7 +69,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var that =this
+    wx.checkSession({
+      success() {
+        //session_key 未过期，并且在本生命周期一直有效
+        console.log('session success' )
+        console.log(that.data.userInfo.nickName)
+      },
+      fail() {
+        // session_key 已经失效，需要重新执行登录流程
+        //wx.login() //重新登录
+        console.log('session failue')
+      }
+    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

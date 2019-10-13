@@ -1,0 +1,22 @@
+{
+  "name": "fr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccysfn/-wxmpwms-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ccysfn/-wxmpwms-/issues"
+  },
+  "homepage": "https://github.com/ccysfn/-wxmpwms-#readme",
+  "dependencies": {
+    "wxbarcode": "^1.0.2"
+  }
+}
