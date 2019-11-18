@@ -64,7 +64,7 @@
         </view>
 
         <view class="weui-btn-area">
-          <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
+          <button class="weui-btn" type="primary" bindtap="confirm">提交</button>
         </view>
 
       </view>

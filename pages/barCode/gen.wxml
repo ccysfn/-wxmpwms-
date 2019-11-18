@@ -1,45 +1,55 @@
-<!--pages/barCode/gen.wxml
-<text>pages/barCode/gen.wxml</text>
--->
+
 <view class="page">
 
-   <view class="page__bd page__bd_spacing">
-    <view class="weui-flex">
-      <view class="weui-flex__item">
-        <canvas canvas-id="qrcode" style="width: 250px; height: 250px;"/>
+  <view class="article">
+    <view class="weui-panel">
+    <view class="weui-panel__hd">二维码</view>
+      <view class="weui-panel__bd">
+        <canvas  class="weui-article__img" canvas-id="qrcode"  />
       </view>
-
-      <view class="weui-flex__item">
-        <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="此处录入" bindinput="inputConfirm" />
-        </view>
-        <view class="weui-btn-area">
-            <button class="weui-btn" type="primary" bindtap="inputBarcode">生成二维码</button>
-        </view>
+      </view>
+       <view class="weui-panel">
+      <view class="weui-panel__hd">条码(注意:条码不能包含中文字)</view>
+        <view class="weui-article__p">
+        <canvas  class="weui-article__img" canvas-id="barcode" />
       </view>
     </view>
 
- 
-    <view class="weui-article">
-      <view class="weui-article__h1">物料</view>
-      <view wx:for="{{wl}}" wx:key="*this" wx:for-item="a">
-        {{a.wlbh}}-
-        <text bindtap="barcode" data-cs="{{a.wlbh}}">获取二维码</text>
+   <view class="weui-cell weui-cell_input "> 
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="此处录入条码内容" bindinput="inputConfirm" />
+      </view>
+      <view class="weui-cell__ft">
+        <view class="weui-vcode-btn">
+          <button class="weui-btn" type="primary" bindtap="inputBarcode">生码</button>
+        </view>
       </view>
     </view>
-    <view class="weui-article">
-      <view class="weui-article__h1">货位</view>
-      <view wx:for="{{hw}}" wx:key="*this" wx:for-item="b">
-        {{b.name}}-
-        <text bindtap="barcode" data-cs="{{b.name}}">获取条码</text>
-      </view>
+  </view>
+
+<!--
+  <view class="weui-article">
+    <view class="weui-article__h1">后台物料</view>
+    <view wx:for="{{wl}}" wx:key="*this" wx:for-item="a">
+      {{a.wlbh}}-
+      <text bindtap="barcode2" data-cs="{{a.wlbh}}">获取条码</text>
     </view>
-    <view class="weui-footer ">
-      <ad unit-id="adunit-1e68a4ccb9e2767a"></ad>
-      <view class="weui-footer__links">
-        <navigator url="https://jessecao.club/public/index.php/wxuser/Index/main" class="weui-footer__link" bindtap="copyLink">后台地址</navigator>
-      </view>
-      <view class="weui-footer__text">Copyright © 2019-2020 WXWMS</view>
+  </view>
+  <view class="weui-article">
+    <view class="weui-article__h1">后台货位</view>
+    <view wx:for="{{hw}}" wx:key="*this" wx:for-item="b">
+      {{b.lsbh}}-
+      <text bindtap="barcode" data-cs="{{b.lsbh}}">获取条码</text>
     </view>
+  </view>
+
+-->
+
+  <view class="weui-footer ">
+    <ad unit-id="adunit-1e68a4ccb9e2767a"></ad>
+    <view class="weui-footer__links">
+      <navigator url="https://jessecao.club/public/index.php/wxuser/Index/main" class="weui-footer__link" bindtap="copyLink">后台地址</navigator>
+    </view>
+    <view class="weui-footer__text">Copyright © 2019-2020 WXWMS</view>
   </view>
 </view>

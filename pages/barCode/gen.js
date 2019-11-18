@@ -8,7 +8,8 @@ Page({
   data: {
     wl:[],
     hw:[],
-    inputValue:''
+    inputValue:'',
+    width:0
   },
 
   /**
@@ -16,6 +17,12 @@ Page({
    */
   onLoad: function (options) {
     var that =this
+    wx.getSystemInfo({
+      success(res) {
+        console.log(res.windowWidth)
+        that.data.width=res.windowWidth
+      }
+    })
       wx.request({
         url: 'https://jessecao.club/public/index.php/wxuser/Index/wlzdApi',
         header: {
@@ -56,14 +63,42 @@ Page({
   },
   inputBarcode: function (e) {
     //console.log(this.data.inputValue)
-    wxbarcode.qrcode('qrcode', this.data.inputValue, 250, 250);
+    wxbarcode.qrcode('qrcode', this.data.inputValue, 300, 300);
+    this.barcode()
 
   },
   barcode:function(e){
-    var v_cs = e.currentTarget.dataset.cs
-    wxbarcode.qrcode('qrcode', v_cs, 250, 250);
-
+    //var v_cs = e.currentTarget.dataset.cs
+    wxbarcode.barcode('barcode', this.data.inputValue, this.data.width, 250);
   },
+  barcode2: function (e) {
+    var v_cs = e.currentTarget.dataset.cs
+    wxbarcode.barcode('barcode', v_cs, this.data.width, 250);
+  },
+
+
+
+  //保存到相册方法
+  saveImg: function () {
+    let imgUrl = 'WMS码';
+   
+        wx.saveImageToPhotosAlbum({
+          filePath: imgUrl,
+          success(result) {
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success'
+            })
+          },
+          fail(result){
+
+            console.log(result)
+          }
+        })
+     
+   
+  },
+  
   onReady: function () {
 
   },
